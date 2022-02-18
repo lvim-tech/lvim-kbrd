@@ -4,3 +4,4 @@ endif
 let g:loaded_lvimkbrd = 1
 
 command!LvimKbrdToggle lua require'lvim-kbrd'.toggle()
+command!LvimKbrdDefault lua require'lvim-kbrd.switch'.insert_leave()

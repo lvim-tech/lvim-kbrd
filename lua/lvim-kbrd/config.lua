@@ -1,9 +1,7 @@
 local M = {
-    active_plugin = 1,
+    active_plugin = 0,
     default_language = "us",
-    languages = {
-        "bg"
-    }
+    insert_language = "bg"
 }
 
 return M
