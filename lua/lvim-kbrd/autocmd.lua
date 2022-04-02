@@ -1,32 +1,42 @@
-local utils = require("lvim-kbrd.utils")
+local group =
+    vim.api.nvim_create_augroup(
+    "LvimKbrd",
+    {
+        clear = true
+    }
+)
 
 local M = {}
 
 function M.enable()
-    local autocmds = {}
-
-    autocmds["lvim_kbrd"] = {
+    vim.api.nvim_create_autocmd(
+        "InsertEnter",
         {
-            "InsertEnter",
-            "*",
-            'lua require"lvim-kbrd.switch".insert_enter()'
-        },
-        {
-            "InsertLeave",
-            "*",
-            'lua require"lvim-kbrd.switch".insert_leave()'
+            pattern = "*",
+            command = 'lua require"lvim-kbrd.switch".insert_enter()',
+            group = group
         }
-    }
+    )
 
-    utils.create_augroups(autocmds)
+    vim.api.nvim_create_autocmd(
+        "InsertLeave",
+        {
+            pattern = "*",
+            command = 'lua require"lvim-kbrd.switch".insert_leave()',
+            group = group
+        }
+    )
 end
 
 function M.disable()
-    local autocmds = {}
-
-    autocmds["lvim_kbrd"] = {}
-
-    utils.create_augroups(autocmds)
+    autocommands =
+        vim.api.nvim_get_autocmds(
+        {
+            group = "LvimKbrd"
+        }
+    )
+    vim.api.nvim_del_autocmd(autocommands[1]["id"])
+    vim.api.nvim_del_autocmd(autocommands[2]["id"])
 end
 
 return M

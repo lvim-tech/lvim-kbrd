@@ -35,18 +35,6 @@ M.is_array = function(t)
     return true
 end
 
-M.create_augroups = function(definitions)
-    for group_name, definition in pairs(definitions) do
-        cmd("augroup " .. group_name)
-        cmd("autocmd!")
-        for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten({"autocmd", def}), " ")
-            cmd(command)
-        end
-        cmd("augroup END")
-    end
-end
-
 M.map = function(mode, lhs, rhs, opts)
     local options = {noremap = true}
     if opts then

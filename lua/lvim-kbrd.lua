@@ -1,7 +1,6 @@
 local config = require("lvim-kbrd.config")
 local utils = require("lvim-kbrd.utils")
 local autocmd = require("lvim-kbrd.autocmd")
-local switch = require("lvim-kbrd.switch")
 
 local M = {}
 
@@ -21,7 +20,6 @@ end
 M.toggle = function()
     if config.active_plugin == 1 then
         autocmd.disable()
-        switch.insert_leave()
         config.active_plugin = 0
     elseif config.active_plugin == 0 then
         config.active_plugin = 1
